@@ -1,0 +1,25 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Django-ng</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="{% static 'front-end/favicon.ico' %}">
+
+  <link rel="stylesheet" href="{% static 'front-end/styles.css' %}">
+</head>
+
+<body>
+	<app-root></app-root>
+	<script type="text/javascript" src="{% static 'front-end/runtime.js' %}"></script>
+	<script type="text/javascript" src="{% static 'front-end/polyfills.js' %}"></script>
+	<script type="text/javascript" src="{% static 'front-end/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'front-end/vendor.js' %}"></script>
+</body>
+
+</html>
