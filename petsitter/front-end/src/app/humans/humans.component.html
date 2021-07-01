@@ -1,0 +1,9 @@
+<h2 class="mt-3">Pet sitters available in your area:</h2>
+<div *ngFor="let profile of humans">
+  <hr />
+  <mat-list>
+    <h3 matLine>{{ profile.first_name }} {{ profile.last_name }}</h3>
+    <p matLine>Rate per hour: {{ profile.rate_per_hour }}</p>
+    <p matLine class="demo-2">Location: {{ profile.city }}</p>
+  </mat-list>
+</div>

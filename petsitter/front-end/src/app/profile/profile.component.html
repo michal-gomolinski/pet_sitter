@@ -1,0 +1,49 @@
+<div class="row mb-3" *ngIf="profile">
+  <h2>This is how other users see you:</h2>
+  <mat-list>
+    <h3 matLine>{{ profile.first_name }} {{ profile.last_name }}</h3>
+    <p matLine>Your rate: {{ profile.rate_per_hour }}</p>
+    <p matLine class="demo-2">You're in: {{ profile.city }}</p>
+  </mat-list>
+</div>
+
+<div *ngIf="!profile">
+  <h3>Create your profile:</h3>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your first name</mat-label>
+    <input
+      matInput
+      placeholder="First Name"
+      name="profile-first-name"
+      [(ngModel)]="new_human.first_name"
+    /> </mat-form-field
+  ><br />
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your last name</mat-label>
+    <input
+      matInput
+      placeholder="Last Name"
+      name="profile-last-name"
+      [(ngModel)]="new_human.last_name" /></mat-form-field
+  ><br />
+  <mat-form-field appearance="fill">
+    <mat-label>How much do you charge per hour:</mat-label>
+    <input
+      matInput
+      type="number"
+      placeholder="Rate per hour"
+      name="profile_rate"
+      [(ngModel)]="new_human.rate_per_hour"
+  /></mat-form-field>
+
+  <br />
+  <button
+    (click)="createHuman()"
+    mat-stroked-button
+    color="primary"
+    class="btn btn-primary"
+  >
+    Save
+  </button>
+</div>

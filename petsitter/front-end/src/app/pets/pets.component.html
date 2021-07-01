@@ -1,0 +1,55 @@
+<div *ngIf="!error" class="container">
+  <h2 class="mt-3">Your pets:</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let pet of pets">
+      <hr />
+      <h3 matLine>Name: {{ pet.name }}</h3>
+      <p matLine>Species: {{ pet.species }}</p>
+      <p matLine class="demo-2">Description: {{ pet.description }}</p>
+    </mat-list-item>
+  </mat-list>
+  <button mat-button routerLink="../humans">Look for pet sitters</button>
+  <h3>Add a new pet to your profile:</h3>
+  <div class="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your pets name</mat-label>
+      <input
+        matInput
+        placeholder="Name"
+        name="login-username"
+        [(ngModel)]="new_pet.name"
+      /> </mat-form-field
+    ><br />
+    <mat-form-field appearance="fill">
+      <mat-label>Describe your pet:</mat-label>
+      <textarea
+        matInput
+        placeholder="Description"
+        name="pet-description"
+        [(ngModel)]="new_pet.description"
+      ></textarea></mat-form-field
+    ><br />
+    <mat-form-field appearance="fill">
+      <mat-label>What species is your pet:</mat-label>
+      <input
+        matInput
+        placeholder="Species"
+        name="pet-species"
+        [(ngModel)]="new_pet.species" /></mat-form-field
+    ><br />
+    <button
+      (click)="createPet()"
+      mat-stroked-button
+      color="primary"
+      class="btn btn-primary"
+    >
+      Save
+    </button>
+  </div>
+</div>
+<div *ngIf="error">
+  <h2>
+    There was an error when attempting to get your pets make sure you're logged
+    in!
+  </h2>
+</div>

@@ -1,0 +1,38 @@
+<div class="container">
+  <div *ngIf="!token" class="form">
+    <h1>Log in:</h1>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your username</mat-label>
+      <input
+        matInput
+        placeholder="Username"
+        name="login-username"
+        [(ngModel)]="user.username"
+      /> </mat-form-field
+    ><br />
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input
+        type="password"
+        matInput
+        placeholder="Password"
+        name="login-password"
+        [(ngModel)]="user.password"
+      /> </mat-form-field
+    ><br />
+    <button (click)="login()" mat-stroked-button color="primary">Log In</button>
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="token">
+    <div>
+      <h1>You are logged in as {{ name }}.</h1>
+      <br />
+      <button mat-button (click)="logout()" class="btn btn-primary">
+        Log Out</button
+      >&nbsp;
+      <button mat-button routerLink=".." class="btn btn-primary">Home</button
+      >&nbsp;
+    </div>
+  </div>
+</div>
