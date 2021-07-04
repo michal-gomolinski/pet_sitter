@@ -1,9 +1,19 @@
 <h2 class="mt-3">Pet sitters available in your area:</h2>
-<div *ngFor="let profile of humans">
-  <hr />
-  <mat-list>
-    <h3 matLine>{{ profile.first_name }} {{ profile.last_name }}</h3>
-    <p matLine>Rate per hour: {{ profile.rate_per_hour }}</p>
-    <p matLine class="demo-2">Location: {{ profile.city }}</p>
-  </mat-list>
+<div class="cards">
+  <div class="card" *ngFor="let profile of humans">
+    <img
+      *ngIf="!profile.picture"
+      src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
+      alt="Avatar"
+    />
+    <img *ngIf="profile.picture" src="{{ profile.picture }}" alt="Avatar" />
+    <div class="container">
+      <h4>
+        <b>{{ profile.first_name }} {{ profile.last_name }}</b>
+      </h4>
+      <hr />
+      <p matLine>Rate per hour: {{ profile.rate_per_hour }}</p>
+      <p matLine class="demo-2">Location: {{ profile.city }}</p>
+    </div>
+  </div>
 </div>

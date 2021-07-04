@@ -5,7 +5,6 @@ import { HomeComponent } from './home/home.component';
 import { HumansComponent } from './humans/humans.component';
 import { PetsComponent } from './pets/pets.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RegisterComponent } from './register/register.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 

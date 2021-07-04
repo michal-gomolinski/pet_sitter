@@ -27,6 +27,7 @@ class Human(models.Model):
     last_name = models.CharField(max_length=255)
     rate_per_hour = models.PositiveIntegerField(default='0')
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    picture = models.ImageField(upload_to='images/',blank = True)
 
     city_choices = [('WWA', 'Warszawa'),
                     ('KRAK','Krakow'),

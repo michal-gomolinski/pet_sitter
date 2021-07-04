@@ -19,9 +19,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { HeaderComponent } from './header/header.component';
 
-import { ComponentsheaderComponent } from './componentsheader/componentsheader.component';
-import { ComponentscontentComponent } from './componentscontent/componentscontent.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { PetsComponent } from './pets/pets.component';
@@ -31,8 +30,7 @@ import { ProfileComponent } from './profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ComponentsheaderComponent,
-    ComponentscontentComponent,
+    HeaderComponent,
     SigninComponent,
     SignupComponent,
     PetsComponent,

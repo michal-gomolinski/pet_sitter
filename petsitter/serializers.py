@@ -42,5 +42,5 @@ class HumanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Human
-        fields = ('first_name', 'last_name','rate_per_hour','city','user')
+        fields = ('first_name', 'last_name','rate_per_hour','city','user','picture')
 

@@ -13,6 +13,7 @@ import datetime
 from pathlib import Path
 import django_heroku
 from decouple import config
+import cloudinary
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'rest_framework',
     'petsitter',
+    'cloudinary',
 ]
 
 
@@ -146,3 +149,14 @@ JWT_AUTH = {
 }
 
 django_heroku.settings(locals())
+
+CLOUDINARY_STORAGE = {  
+    "CLOUD_NAME" : config("CLOUD_NAME"),
+    "API_KEY" : config("API_KEY"),
+    "API_SECRET" : config("API_SECRET")
+}
+
+
+
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
