@@ -489,10 +489,13 @@ function ProfileComponent_div_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function ProfileComponent_div_1_Template_input_ngModelChange_16_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3); const ctx_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r5.new_human.rate_per_hour = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](17, "br");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](18, "button", 10);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ProfileComponent_div_1_Template_button_click_18_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3); const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r6.createHuman(); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](19, " Save ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](17, "input", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("change", function ProfileComponent_div_1_Template_input_change_17_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3); const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r6.onImageChanged($event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](18, "br");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](19, "button", 11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ProfileComponent_div_1_Template_button_click_19_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3); const ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r7.createHuman(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](20, " Save ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -510,7 +513,14 @@ class ProfileComponent {
     }
     ngOnInit() {
         this.getProfile();
-        this.new_human = {};
+        this.new_human = {
+            first_name: '',
+            last_name: '',
+            rate_per_hour: 0,
+        };
+    }
+    onImageChanged(event) {
+        this.cover = event.target.files[0];
     }
     getProfile() {
         this.userService.getProfile().subscribe((data) => {
@@ -522,9 +532,18 @@ class ProfileComponent {
         });
     }
     createHuman() {
-        this.userService
-            .createHuman(this.new_human, this.userService.token)
-            .subscribe((data) => {
+        var formData = new FormData();
+        for (var [key, value] of Object.entries(this.new_human)) {
+            if (typeof value == 'number')
+                value = String(value);
+            formData.append(key, value);
+        }
+        if (this.cover) {
+            formData.append('picture', this.cover);
+            //this.new_human.picture = this.cover;
+        }
+        console.log(this.new_human);
+        this.userService.createHuman(formData).subscribe((data) => {
             window.location.reload();
             return true;
         }, (error) => {
@@ -534,9 +553,9 @@ class ProfileComponent {
     }
 }
 ProfileComponent.ɵfac = function ProfileComponent_Factory(t) { return new (t || ProfileComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"])); };
-ProfileComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: ProfileComponent, selectors: [["app-profile"]], decls: 2, vars: 2, consts: [["class", "row mb-3", 4, "ngIf"], [4, "ngIf"], [1, "row", "mb-3"], ["matLine", ""], ["matLine", "", 1, "demo-2"], ["alt", "image", 3, "src"], ["appearance", "fill"], ["matInput", "", "placeholder", "First Name", "name", "profile-first-name", 3, "ngModel", "ngModelChange"], ["matInput", "", "placeholder", "Last Name", "name", "profile-last-name", 3, "ngModel", "ngModelChange"], ["matInput", "", "type", "number", "placeholder", "Rate per hour", "name", "profile_rate", 3, "ngModel", "ngModelChange"], ["mat-stroked-button", "", "color", "primary", 1, "btn", "btn-primary", 3, "click"]], template: function ProfileComponent_Template(rf, ctx) { if (rf & 1) {
+ProfileComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: ProfileComponent, selectors: [["app-profile"]], decls: 2, vars: 2, consts: [["class", "row mb-3", 4, "ngIf"], [4, "ngIf"], [1, "row", "mb-3"], ["matLine", ""], ["matLine", "", 1, "demo-2"], ["alt", "image", 3, "src"], ["appearance", "fill"], ["matInput", "", "placeholder", "First Name", "name", "profile-first-name", 3, "ngModel", "ngModelChange"], ["matInput", "", "placeholder", "Last Name", "name", "profile-last-name", 3, "ngModel", "ngModelChange"], ["matInput", "", "type", "number", "placeholder", "Rate per hour", "name", "profile_rate", 3, "ngModel", "ngModelChange"], ["type", "file", "name", "picture", 3, "change"], ["mat-stroked-button", "", "color", "primary", 1, "btn", "btn-primary", 3, "click"]], template: function ProfileComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, ProfileComponent_div_0_Template, 11, 5, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, ProfileComponent_div_1_Template, 20, 3, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, ProfileComponent_div_1_Template, 21, 3, "div", 1);
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.profile);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
@@ -1173,14 +1192,13 @@ class UserService {
         };
         return this.http.get(this.endpoint + '/api/pets-for-user', httpOptions);
     }
-    createHuman(human, token) {
+    createHuman(human) {
         let httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
-                'Content-Type': 'application/json',
                 Authorization: 'JWT ' + this.getToken(),
             }),
         };
-        return this.http.post(this.endpoint + '/api/humans', JSON.stringify(human), httpOptions);
+        return this.http.put(this.endpoint + '/api/humans', human, httpOptions);
     }
     getProfile() {
         let httpOptions = {

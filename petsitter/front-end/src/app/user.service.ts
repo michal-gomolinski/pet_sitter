@@ -117,18 +117,13 @@ export class UserService {
     };
     return this.http.get(this.endpoint + '/api/pets-for-user', httpOptions);
   }
-  createHuman(human, token) {
+  createHuman(human: FormData) {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
         Authorization: 'JWT ' + this.getToken(),
       }),
     };
-    return this.http.post(
-      this.endpoint + '/api/humans',
-      JSON.stringify(human),
-      httpOptions
-    );
+    return this.http.put(this.endpoint + '/api/humans', human, httpOptions);
   }
   getProfile() {
     let httpOptions = {

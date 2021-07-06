@@ -38,6 +38,8 @@
       [(ngModel)]="new_human.rate_per_hour"
   /></mat-form-field>
 
+  <input type="file" name="picture" (change)="onImageChanged($event)" />
+
   <br />
   <button
     (click)="createHuman()"

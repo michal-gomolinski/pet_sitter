@@ -5,9 +5,9 @@ from rest_framework import viewsets, permissions, status
 from .models import BlogPost, Human, Pet
 from . import serializers
 from .permissions import IsAuthenticatedOrWriteOnly
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
-
+from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
 def index(request, path=''):
     return render(request, 'index.html')
 
@@ -41,18 +41,22 @@ class PetViewSet(viewsets.ModelViewSet):
 
 
 class HumanViewSet(viewsets.ModelViewSet):
-
+    parser_class = (FormParser,MultiPartParser,JSONParser)
     queryset = Human.objects.all()
     serializer_class = serializers.HumanSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-    def perform_create(self, serializer):
+    def put(self, request, pk = None, format=None):
+        serializer = serializers.HumanSerializer(data=self.request.data)
         humans = Human.objects.filter(user=self.request.user)
-        print(humans.count())
+
         if humans.count() > 0 :
             return Response('User already has a profile',status=status.HTTP_400_BAD_REQUEST)
-            
-        serializer.save(user=self.request.user)
+        if serializer.is_valid():
+            serializer.save(user=self.request.user)
+            return Response('serializer.data', status=status.HTTP_201_CREATED)
+        return Response('User already has a profile',status=status.HTTP_400_BAD_REQUEST)
+        
 
 @api_view(['GET'])
 def getUserPets(request):
@@ -76,7 +80,9 @@ def getHumanProfile(request):
     human = Human.objects.filter(user=request.user)
 
     serializer = serializers.HumanSerializer(human,many=True)
-    return Response(serializer.data[0])
+    if(serializer.data):
+        return Response(serializer.data[0])
+    return Response({'error':'No user profile'},status=status.HTTP_404_NOT_FOUND)
 
 @api_view(['GET'])
 def getUser(request,username):
