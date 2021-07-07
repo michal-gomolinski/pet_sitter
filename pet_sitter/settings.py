@@ -14,6 +14,7 @@ from pathlib import Path
 import django_heroku
 from decouple import config
 import cloudinary
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,11 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
+    
     'django.contrib.staticfiles',
+    'cloudinary_storage',
     'rest_framework',
     'petsitter',
     'cloudinary',
+    
 ]
 
 
@@ -125,8 +128,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = '../petsitter/static/front-end'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -160,5 +162,10 @@ CLOUDINARY_STORAGE = {
 
 MEDIA_URL = '/media/'  # or any prefix you choose
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+
+STATIC_URL = '/static/'
+STATIC_ROOT = '../petsitter/static/front-end'
 
 django_heroku.settings(locals())
