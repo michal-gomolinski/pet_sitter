@@ -148,7 +148,7 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600),
 }
 
-django_heroku.settings(locals())
+
 
 CLOUDINARY_STORAGE = {  
     "CLOUD_NAME" : config("CLOUD_NAME"),
@@ -160,3 +160,5 @@ CLOUDINARY_STORAGE = {
 
 MEDIA_URL = '/media/'  # or any prefix you choose
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+django_heroku.settings(locals())
